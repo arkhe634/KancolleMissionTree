@@ -215,7 +215,7 @@ if __name__ == '__main__':
 				if life == 0:
 					prev_id = mission_id
 				# 特定のミッション以外を弾く(イベント任務とか)
-				id_pattern = "B[dwmq]?[0-9]+|[ACDEFG][0-9]+|W[ABCF][0-9]+|SB[0-9]+"
+				id_pattern = "B[dwmq]?[0-9]+|[ACDEFG][0-9]+|W[ABCF][0-9]+"
 				if re.match(id_pattern, mission_id) is None:
 					continue
 				table_missions[mission_id] = \
