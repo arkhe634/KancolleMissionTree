@@ -65,7 +65,7 @@ def getOthers(td):
 		 "水上爆撃機","大型探照灯","水上艦要員","注)２","陸軍戦闘機","司令部施設","水上戦闘機","潜水艦魚雷",
 		 "噴式戦闘爆撃機","艦上偵察機","補給物資","陸上攻撃機","魚雷","特型内火艇","艦上爆撃機","簡易輸送部材",
 		 "大口径主砲","航空要員","対空電探","対水上電探","大型飛行艇","機関部強化","副砲","増設バルジ(中型艦)",
-		 "増設バルジ(大型艦)","戦闘糧食"]
+		 "増設バルジ(大型艦)","戦闘糧食","探照灯"]
 	append_strings = ["選択報酬","探照灯","イベント海域","開放","解放","高速修復材","高速修復剤","第2艦隊開放",
 					  "第3艦隊開放","第4艦隊開放","駆逐艦"]
 	result = []
@@ -116,7 +116,7 @@ def getOthers(td):
 				continue
 			str += child
 			continue
-		print(child,type(child))
+		#print(child,type(child))
 		exit(1)
 	if not str =="":
 		result.append(correctTypos(str))
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 				if life == 0:
 					prev_id = mission_id
 				# 特定のミッション以外を弾く(イベント任務とか)
-				id_pattern = "B[dwmq]?[0-9]+|[ACDEFG][0-9]+|W[ABCF][0-9]+"
+				id_pattern = "B[dwmq]?[0-9]+|5?[ACDEFG][0-9]+|W[ABCF][0-9]+"
 				if re.match(id_pattern, mission_id) is None:
 					continue
 				table_missions[mission_id] = \

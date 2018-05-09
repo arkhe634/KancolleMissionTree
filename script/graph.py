@@ -18,7 +18,9 @@ def getColor(id,period):
 		return "#9932CC"
 	if id[0] == 'W':
 		return "#FF69B4"
-	stderr.write(f'Unknown mission id {id}')
+	if id[0] == '5':
+		return "#CD619B"
+	stderr.write(f'Unknown mission id {id}\n')
 	return "#FFFFFF"
 
 def edge(f,id,data):
@@ -32,7 +34,7 @@ def edge(f,id,data):
 	period = data["period"]
 	for mission in dependency:
 		if not len(mission["id"])==0:
-			f.write(f'\t{mission["id"]}->{id};\n')
+			f.write(f'\tM{mission["id"]}->M{id};\n')
 
 def node(f,id,data):
 	name = data["name"]
@@ -43,7 +45,7 @@ def node(f,id,data):
 	others = data["others"]
 	dependency = data["dependency"]
 	period = data["period"]
-	f.write(f'\t{id}[shape="record",style="filled",id="{id}",label="{{{name}|{{{fuel}|{magazine}|{steel}|{bauxite}}}')
+	f.write(f'\tM{id}[shape="record",style="filled",id="{id}",label="{{{name}|{{{fuel}|{magazine}|{steel}|{bauxite}}}')
 	for items in others:
 		f.write('|')
 		if isinstance(items,list):

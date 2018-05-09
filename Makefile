@@ -19,7 +19,7 @@ data/missions.json:html/mission.html script/scraper.py
 	@python3 script/scraper.py html/mission.html data/missions.json
 
 html/mission.html:
-	@curl http://wikiwiki.jp/kancolle/?%C7%A4%CC%B3 -o html/mission.html
+	@curl https://wikiwiki.jp/kancolle/%E4%BB%BB%E5%8B%99 -o html/mission.html
 	@nkf -w --overwrite html/mission.html
 
 js/functions.js:ts/functions.ts
