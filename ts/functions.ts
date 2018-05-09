@@ -1,19 +1,20 @@
 document.oncontextmenu = function () { return false; }
 
-function evaluate(xpath: string, root: Node = document): Node[] {
+function evaluate(xpath: string, root: Node = document): Element[] {
 	const result: XPathResult = document.evaluate(xpath, root, undefined, XPathResult.ANY_TYPE, undefined);
-	const ret: Node[] = [];
+	const ret: Element[] = [];
 	let node: Node = result.iterateNext();
 	while (node) {
-		ret.push(node);
+		if (node instanceof Element)
+			ret.push(node);
 		node = result.iterateNext();
 	}
 	return ret;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	let nodes: Node[] = evaluate("//*[@class='node']");
-	let edges: Node[] = evaluate("//*[@class='edge']");
+	let nodes: Element[] = evaluate("//*[@class='node']");
+	let edges: Element[] = evaluate("//*[@class='edge']");
 	for (let node of nodes) {
 		let id = node.attributes["id"].value;
 		let color = evaluate("./*[name()='polygon']", node)[0].attributes["fill"].value;
@@ -23,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	for (let edge of edges) {
 		let [from, to] = evaluate("./*[name()='title']", edge)[0].textContent.split("->");
-		Dependency[to].push(from);
+		console.log(to);
+		Dependency[to.substr(1)].push(from.substr(1));
 	}
 });
 

@@ -4,7 +4,8 @@ function evaluate(xpath, root = document) {
     const ret = [];
     let node = result.iterateNext();
     while (node) {
-        ret.push(node);
+        if (node instanceof Element)
+            ret.push(node);
         node = result.iterateNext();
     }
     return ret;
@@ -21,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     for (let edge of edges) {
         let [from, to] = evaluate("./*[name()='title']", edge)[0].textContent.split("->");
-        Dependency[to].push(from);
+        console.log(to);
+        Dependency[to.substr(1)].push(from.substr(1));
     }
 });
 //{id:ノード}
