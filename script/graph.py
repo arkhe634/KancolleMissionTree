@@ -29,7 +29,7 @@ def edge(f,id,data):
 	magazine = data["magazine"]
 	steel = data["steel"]
 	bauxite = data["bauxite"]
-	others = data["others"]
+	others = data["items"]
 	dependency = data["dependency"]
 	period = data["period"]
 	for mission in dependency:
@@ -42,7 +42,7 @@ def node(f,id,data):
 	magazine = data["magazine"]
 	steel = data["steel"]
 	bauxite = data["bauxite"]
-	others = data["others"]
+	others = data["items"]
 	dependency = data["dependency"]
 	period = data["period"]
 	f.write(f'\tM{id}[shape="record",style="filled",id="{id}",label="{{{name}|{{{fuel}|{magazine}|{steel}|{bauxite}}}')
